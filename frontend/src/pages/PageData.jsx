@@ -47,7 +47,8 @@ function PageData() {
   });
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-gray-900 text-white p-6">
+    <div className="relative flex flex-col items-center min-h-screen bg-gray-900 text-white p-6 overflow-hidden">
+
       <h1 className="text-3xl font-semibold mb-6">Banco de Ideias 💡</h1>
 
       {/* Filtros e ações */}
@@ -134,6 +135,57 @@ function PageData() {
           </tbody>
         </table>
       </div>
+
+{/* 3 imagens fixas à direita */}
+<div
+  style={{
+    position: "fixed",
+    right: "180px",
+    top: "50%",
+    transform: "translateY(-50%)",
+    display: "flex",
+   flexDirection: "row",
+    gap: "20px",
+  }}
+>
+  <img
+    src="/ideias-lado.jpg"
+    alt="Equipe Meninas Digitais"
+    style={{
+      width: "220px",
+      borderRadius: "12px",
+      border: "1px solid #555",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+    }}
+  />
+  <img
+    src="/foto2.jpg"
+    alt="Foto 2"
+    style={{
+      width: "220px",
+      borderRadius: "12px",
+      border: "1px solid #555",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+    }}
+  />
+  <img
+    src="/foto3.jpg"
+    alt="Foto 3"
+    style={{
+      width: "220px",
+      borderRadius: "12px",
+      border: "1px solid #555",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
+    }}
+  />
+</div>
+
+/
+
+
+
+
+
 
       {/* Formulário de nova ideia */}
       {mostrarForm && (
