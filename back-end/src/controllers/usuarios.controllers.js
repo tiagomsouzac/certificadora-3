@@ -46,7 +46,6 @@ const create = async (request, response) => {
       email,
       senha,
       cargo,
-      phone,
     });
     return response.status(201).json(usuario);
   } catch (err) {
