@@ -46,7 +46,6 @@ const create = async (request, response) => {
       email,
       senha,
       cargo,
-      phone,
     });
     return response.status(201).json(usuario);
   } catch (err) {
@@ -60,8 +59,10 @@ const create = async (request, response) => {
 const update = async (request, response) => {
   const { id } = request.params;
   const { nome, email, senha, cargo} = request.body;
+  const usuario = await UsuarioModel.findById(id, { password: 0 });
 
-  if (!(request.usuario._id.toString() === id)) {
+
+  if (!(usuario._id.toString() === id)) {
     return response.status(401).json(notPermissionMessage);
   }
 
@@ -92,13 +93,14 @@ const update = async (request, response) => {
 
 const remove = async (request, response) => {
   const { id } = request.params;
+  const usuario = await UsuarioModel.findById(id, { password: 0 });
 
-  if (!(request.usuario._id.toString() === id)) {
+  if (!(usuario._id.toString() === id)) {
     return response.status(401).json(notPermissionMessage);
   }
 
   try {
-    const usuarioDeleted = await usuarioModel.findByIdAndDelete(id);
+    const usuarioDeleted = await UsuarioModel.findByIdAndDelete(id);
 
     if (!usuarioDeleted) {
       throw new Error();
