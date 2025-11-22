@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Login from "./pages/Login.jsx";
 import Register from "./pages/Register.jsx";
+import "../src/App.css"
 
 function App() {
   const navigate = useNavigate();
