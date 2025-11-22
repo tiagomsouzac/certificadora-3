@@ -35,11 +35,6 @@ return (
     {/* Overlay suave */}
     <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
 
-    {/* Título */}
-    <h1 className="relative z-10 text-5xl font-bold text-orange-200 mb-8 drop-shadow-xl">
-      Meninas Digitais
-    </h1>
-
     {/* Container principal */}
     <div
       className="relative z-10 bg-white/10 backdrop-blur-xl p-8 rounded-2xl 
