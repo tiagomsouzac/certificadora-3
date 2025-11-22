@@ -47,151 +47,127 @@ function PageData() {
   });
 
   return (
-    <div className="relative flex flex-col items-center min-h-screen bg-gray-900 text-white p-6 overflow-hidden">
+    <div
+      className="relative flex flex-col items-center min-h-screen bg-cover bg-center p-6 overflow-hidden"
+      style={{ backgroundImage: "url('/ideias-lado.jpg')" }}
+    >
+      {/* Overlay e blur */}
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
 
-      <h1 className="text-3xl font-semibold mb-6">Banco de Ideias 💡</h1>
+      {/* Título */}
+      <h1 className="relative z-10 text-5xl font-bold text-orange-200 mb-8 drop-shadow-xl">
+        Banco de Ideias 💡
+      </h1>
 
-      {/* Filtros e ações */}
-      <div className="flex flex-wrap gap-4 mb-6 justify-center">
-        <input
-          type="text"
-          placeholder="Buscar por título ou autor..."
-          value={busca}
-          onChange={(e) => setBusca(e.target.value)}
-          className="p-2 rounded bg-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
-        />
-        <select
-          value={filtroStatus}
-          onChange={(e) => setFiltroStatus(e.target.value)}
-          className="p-2 rounded bg-gray-700 outline-none focus:ring-2 focus:ring-blue-500"
-        >
-          <option value="">Todos os status</option>
-          <option value="Nova">Nova</option>
-          <option value="Em análise">Em análise</option>
-          <option value="Aprovada">Aprovada</option>
-          <option value="Implementada">Implementada</option>
-        </select>
-        <button
-          onClick={() => setMostrarForm(true)}
-          className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded"
-        >
-          + Nova Ideia
-        </button>
-        <button
-          onClick={() => alert("Gerar relatório em breve...")}
-          className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded"
-        >
-          📊 Relatórios
-        </button>
-      </div>
+      {/* Container principal */}
+      <div
+        className="relative z-10 bg-white/10 backdrop-blur-xl p-6 rounded-2xl 
+                   shadow-2xl w-full max-w-5xl border border-white/20"
+      >
+        {/* Filtros */}
+        <div className="flex flex-wrap gap-4 mb-6 justify-center">
+          <input
+            type="text"
+            placeholder="Buscar por título ou autor..."
+            value={busca}
+            onChange={(e) => setBusca(e.target.value)}
+            className="p-2 rounded bg-white/20 text-white placeholder-white/60 
+                       outline-none focus:ring-2 focus:ring-pink-400"
+          />
 
-      {/* Tabela */}
-      <div className="w-full max-w-4xl bg-gray-800 rounded-lg shadow-md overflow-x-auto">
-        <table className="w-full text-left border-collapse">
-          <thead>
-            <tr className="bg-gray-700">
-              <th className="p-3">Título</th>
-              <th className="p-3">Descrição</th>
-              <th className="p-3">Autor</th>
-              <th className="p-3">Status</th>
-              <th className="p-3">Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {ideiasFiltradas.length > 0 ? (
-              ideiasFiltradas.map((i) => (
-                <tr key={i.id} className="border-t border-gray-700">
-                  <td className="p-3">{i.titulo}</td>
-                  <td className="p-3">{i.descricao}</td>
-                  <td className="p-3">{i.autor}</td>
-                  <td className="p-3">{i.status}</td>
-                  <td className="p-3">
-                    <button
-                      onClick={() => handleStatusChange(i.id)}
-                      className="bg-yellow-600 hover:bg-yellow-700 px-3 py-1 rounded mr-2"
-                    >
-                      Próximo status
-                    </button>
-                    <button
-                      onClick={() =>
-                        alert(
-                          `Detalhes:\n\nTítulo: ${i.titulo}\nDescrição: ${i.descricao}\nAutor: ${i.autor}\nStatus: ${i.status}`
-                        )
-                      }
-                      className="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded"
-                    >
-                      Inspecionar
-                    </button>
+          <select
+            value={filtroStatus}
+            onChange={(e) => setFiltroStatus(e.target.value)}
+            className="p-2 rounded bg-white/20 text-white outline-none 
+                       focus:ring-2 focus:ring-pink-400"
+          >
+            <option value="">Todos os status</option>
+            <option value="Nova">Nova</option>
+            <option value="Em análise">Em análise</option>
+            <option value="Aprovada">Aprovada</option>
+            <option value="Implementada">Implementada</option>
+          </select>
+
+          <button
+            onClick={() => setMostrarForm(true)}
+            className="bg-pink-600 hover:bg-pink-700 px-4 py-2 rounded font-semibold transition"
+          >
+            + Nova Ideia
+          </button>
+
+          <button
+            onClick={() => alert("Gerar relatório em breve...")}
+            className="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded font-semibold transition"
+          >
+            📊 Relatórios
+          </button>
+        </div>
+
+        {/* Tabela */}
+        <div className="w-full bg-white/10 backdrop-blur-lg rounded-xl shadow-lg overflow-x-auto border border-white/20">
+          <table className="w-full text-left border-collapse text-white">
+            <thead>
+              <tr className="bg-white/10 border-b border-white/20">
+                <th className="p-3">Título</th>
+                <th className="p-3">Descrição</th>
+                <th className="p-3">Autor</th>
+                <th className="p-3">Status</th>
+                <th className="p-3">Ações</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {ideiasFiltradas.length > 0 ? (
+                ideiasFiltradas.map((i) => (
+                  <tr
+                    key={i.id}
+                    className="border-b border-white/10 hover:bg-white/5"
+                  >
+                    <td className="p-3">{i.titulo}</td>
+                    <td className="p-3">{i.descricao}</td>
+                    <td className="p-3">{i.autor}</td>
+                    <td className="p-3">{i.status}</td>
+                    <td className="p-3 flex gap-2">
+                      <button
+                        onClick={() => handleStatusChange(i.id)}
+                        className="bg-yellow-600 hover:bg-yellow-700 px-3 py-1 rounded"
+                      >
+                        Próximo
+                      </button>
+
+                      <button
+                        onClick={() =>
+                          alert(
+                            `Detalhes:\n\nTítulo: ${i.titulo}\nDescrição: ${i.descricao}\nAutor: ${i.autor}\nStatus: ${i.status}`
+                          )
+                        }
+                        className="bg-blue-600 hover:bg-blue-700 px-3 py-1 rounded"
+                      >
+                        Ver
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              ) : (
+                <tr>
+                  <td colSpan="5" className="text-center p-4 text-white/70">
+                    Nenhuma ideia encontrada.
                   </td>
                 </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="5" className="text-center p-4 text-gray-400">
-                  Nenhuma ideia encontrada.
-                </td>
-              </tr>
-            )}
-          </tbody>
-        </table>
+              )}
+            </tbody>
+          </table>
+        </div>
       </div>
 
-{/* 3 imagens fixas à direita */}
-<div
-  style={{
-    position: "fixed",
-    right: "180px",
-    top: "50%",
-    transform: "translateY(-50%)",
-    display: "flex",
-   flexDirection: "row",
-    gap: "20px",
-  }}
->
-  <img
-    src="/ideias-lado.jpg"
-    alt="Equipe Meninas Digitais"
-    style={{
-      width: "220px",
-      borderRadius: "12px",
-      border: "1px solid #555",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
-    }}
-  />
-  <img
-    src="/foto2.jpg"
-    alt="Foto 2"
-    style={{
-      width: "220px",
-      borderRadius: "12px",
-      border: "1px solid #555",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
-    }}
-  />
-  <img
-    src="/foto3.jpg"
-    alt="Foto 3"
-    style={{
-      width: "220px",
-      borderRadius: "12px",
-      border: "1px solid #555",
-      boxShadow: "0 4px 12px rgba(0,0,0,0.5)",
-    }}
-  />
-</div>
-
-/
-
-
-
-
-
-
-      {/* Formulário de nova ideia */}
+      {/* Modal */}
       {mostrarForm && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center">
-          <div className="bg-gray-800 p-6 rounded-xl w-96 shadow-lg">
-            <h2 className="text-xl font-semibold mb-4">Nova Ideia 💭</h2>
+        <div className="fixed inset-0 bg-black/60 backdrop-blur-md flex items-center justify-center z-50">
+          <div className="bg-white/10 backdrop-blur-xl p-6 rounded-xl w-96 shadow-2xl border border-white/20">
+            <h2 className="text-xl font-semibold mb-4 text-orange-200">
+              Nova Ideia 💭
+            </h2>
+
             <form onSubmit={handleAddIdeia} className="flex flex-col gap-3">
               <input
                 type="text"
@@ -200,16 +176,20 @@ function PageData() {
                 onChange={(e) =>
                   setNovaIdeia({ ...novaIdeia, titulo: e.target.value })
                 }
-                className="p-2 rounded bg-gray-700 text-white outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 rounded bg-white/20 text-white placeholder-white/60 
+                           outline-none focus:ring-2 focus:ring-pink-400"
               />
+
               <textarea
                 placeholder="Descrição"
                 value={novaIdeia.descricao}
                 onChange={(e) =>
                   setNovaIdeia({ ...novaIdeia, descricao: e.target.value })
                 }
-                className="p-2 rounded bg-gray-700 text-white outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 rounded bg-white/20 text-white placeholder-white/60 
+                           outline-none focus:ring-2 focus:ring-pink-400"
               />
+
               <input
                 type="text"
                 placeholder="Autor"
@@ -217,10 +197,11 @@ function PageData() {
                 onChange={(e) =>
                   setNovaIdeia({ ...novaIdeia, autor: e.target.value })
                 }
-                className="p-2 rounded bg-gray-700 text-white outline-none focus:ring-2 focus:ring-blue-500"
+                className="p-2 rounded bg-white/20 text-white placeholder-white/60 
+                           outline-none focus:ring-2 focus:ring-pink-400"
               />
 
-              <div className="flex justify-between mt-2">
+              <div className="flex justify-between mt-3">
                 <button
                   type="button"
                   onClick={() => setMostrarForm(false)}
@@ -228,6 +209,7 @@ function PageData() {
                 >
                   Cancelar
                 </button>
+
                 <button
                   type="submit"
                   className="bg-green-600 hover:bg-green-700 px-3 py-1 rounded"
