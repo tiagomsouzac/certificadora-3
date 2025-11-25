@@ -40,6 +40,13 @@ const getById = async (request, response) => {
 const create = async (request, response) => {
   const { nome, email, senha, cargo} = request.body;
 
+  if (cargo ==! "professor" || cargo ==! "aluno") {
+    return response.status(401).json({
+      error: "@users/create",
+      message: err.message || "Failed to create user, cargos devem ser professor ou aluno",
+    });
+  }
+
   try {
     const usuario = await UsuarioModel.create({
       nome,
@@ -64,6 +71,13 @@ const update = async (request, response) => {
 
   if (!(usuario._id.toString() === id)) {
     return response.status(401).json(notPermissionMessage);
+  }
+
+  if (cargo ==! "professor" || cargo ==! "aluno") {
+    return response.status(401).json({
+      error: "@users/create",
+      message: err.message || "Failed to update user, cargos devem ser professor ou aluno",
+    });
   }
 
   try {

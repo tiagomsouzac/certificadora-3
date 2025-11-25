@@ -9,11 +9,6 @@ const IdeiaSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  usuario_id:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "usuario",
-    required: true,
-  },
   status:{
     type: String,
     required: true,
